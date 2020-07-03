@@ -47,7 +47,7 @@ def coin_flip(guess, bet):
       print("Commiserations, you lost " + str(bet) + " coins. Better luck next time!")
       money += - bet
     
-    print("You now have " + str(money) + " coins!")
+    print("You have " + str(money) + " coins!")
     print()
 
 
@@ -96,7 +96,7 @@ def cho_han(guess, bet):
       print("Commiserations, you lost " +str(bet) + " coins.")
       money += - bet
 
-    print("You now have " + str(money) + " coins!")
+    print("You have " + str(money) + " coins!")
     print()
 
 
@@ -106,9 +106,7 @@ def cho_han(guess, bet):
 
 def card_pick(bet):
   global money
-  print("Two Player Card Pick Game")
-  print("Pick a card, any card...")
-
+  
   if bet < 1:
     print("Bet must not be less than 1!")
     print()
@@ -118,6 +116,32 @@ def card_pick(bet):
     print("You only have " + str(money) + " coins.")
     print()
 
+  else:
+    print("Two Player Card Pick Game")
+    print("You are betting " + str(bet) + " coins that your card will be higher.")
+    print("Aces are low, pick a card, any card...")
+
+    player1_card = random.randint(1, 13)
+    player2_card = random.randint(1, 13)
+
+    if player1_card > player2_card:
+      print("Your card is higher!")
+      print("Congatulations! You win " + str(bet) + " coins!")
+      money += bet
+
+    elif player1_card == player2_card:
+      print("Your cards are equal!")
+      print("It's a tie! You do not win or lose any coins.")
+
+    else:
+      print("Your card is lower!")
+      print("Commiserations, you lose " + str(bet) + " coins.")
+      money += -bet
+
+    print("You have " + str(money) + " coins!")
+    print()
+
+  
 
 
 
@@ -155,7 +179,7 @@ print("------ Testing Card Pick ------")
 print()
 
 print("Testing Card Flip with an invalid bet input")
-card_pick(0)
+card_pick(1000)
 
 print("Testing Card Flip with a valid bet input")
 card_pick(20)
