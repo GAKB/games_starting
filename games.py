@@ -102,6 +102,25 @@ def cho_han(guess, bet):
 
 
 
+#Define Card Pick game -------------------------------------
+
+def card_pick(bet):
+  global money
+  print("Two Player Card Pick Game")
+  print("Pick a card, any card...")
+
+  if bet < 1:
+    print("Bet must not be less than 1!")
+    print()
+
+  elif bet > money:
+    print("You can't afford to bet " + str(bet) + " coins!")
+    print("You only have " + str(money) + " coins.")
+    print()
+
+
+
+
 print()
 #Call your game of chance functions here
 
@@ -116,7 +135,7 @@ print("Testing coin flip with false bet input")
 coin_flip("Heads", 120)
 
 print("Testing coin flip with valid input")
-pythcoin_flip("Heads", 30)
+coin_flip("Heads", 30)
 
 
 print("------ Testing Cho-Han ------")
@@ -132,43 +151,11 @@ print("Testing Cho-Han with valid input")
 cho_han("Even", 25)
 
 
+print("------ Testing Card Pick ------")
+print()
 
+print("Testing Card Flip with an invalid bet input")
+card_pick(0)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+print("Testing Card Flip with a valid bet input")
+card_pick(20)
