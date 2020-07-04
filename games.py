@@ -162,7 +162,8 @@ def card_pick(bet):
 #Define Roulette game function
 def roulette(guess, bet):
   global money
-
+  print("Roulette Game")
+  
   if bet < 1:
     print("Bet must not be less than 1!")
     print()
