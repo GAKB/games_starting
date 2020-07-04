@@ -176,7 +176,7 @@ def roulette(guess, bet):
     print('Your guess can only be "Even", "Odd", or a number between 0 and 36 inclusive, or 00.')
     print()
 
-  else:  #Game code goes here, incorrect inputs filtered above
+  else:
     number = random.randint(0,37)
 
     if str(type(guess)) == "<class 'str'>":
@@ -209,7 +209,7 @@ def roulette(guess, bet):
         print("Commiserations, you lose " + str(bet) + " coins.")
         money += - bet
 
-    else: #Try to get it working with a guess of 00
+    else:
       if number == 37:
         result = "00"
         guess = "00"
@@ -229,8 +229,6 @@ def roulette(guess, bet):
 
     print("You have " + str(money) + " coins!")
     print()
-
-
 
 
 
