@@ -159,7 +159,34 @@ def card_pick(bet):
 
 
 #Define Roulette game function
+def roulette(guess, bet):
+  global money
 
+  if bet < 1:
+    print("Bet must not be less than 1!")
+    print()
+
+  elif bet > money:
+    print("You can't afford to bet " + str(bet) + " coins!")
+    print("You only have " + str(money) + " coins.")
+    print()
+
+  elif str(type(guess)) == "<class 'str'>":
+    if guess != "Even" and guess != "Odd":
+      print('Your guess can only be "Even", "Odd", or a number between 1 and 36 inclusive.')
+      print()
+
+    else:   #Code for Even or Odd guess goes here
+      print("You bet " + str(bet) + " coins on an " + guess + " number...")
+
+  elif str(type(guess)) == "<class 'int'>":
+    if guess < 1 or guess > 36:
+      print('Your guess can only be "Even", "Odd", or a number between 1 and 36 inclusive.')
+      print()
+
+    else:   #Code for Number guess goes here
+      print("You bet " + str(bet) + " coins on number " + str(guess) + "...")
+    
 
 
 
@@ -201,4 +228,23 @@ card_pick(1000)
 
 print("Testing Card Flip with a valid bet input")
 card_pick(20)
+
 """
+
+print("------ Testing Roulette ------")
+print()
+
+print("Testing Roulette with invalid parity guess input")
+roulette("boo", 15)
+
+print("Testing Roulette with invalid numer guess")
+roulette(100, 20)
+
+print("Testing Roulette with invalid bet input")
+roulette("Even", 1000)
+
+print("Testing Roulette with valid parity guess input")
+roulette("Even", 25)
+
+print("Testing Roulette with valid number guess input")
+roulette(25, 5)
