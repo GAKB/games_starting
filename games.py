@@ -7,7 +7,7 @@ money = 100
 
 
 
-#Define Coin Flip game -------------------------------------
+#Define Coin Flip game function
 
 def coin_flip(guess, bet):
   global money
@@ -53,7 +53,7 @@ def coin_flip(guess, bet):
 
 
 
-#Define Cho-Han game -------------------------------------
+#Define Cho-Han game function
 
 def cho_han(guess, bet):
   global money
@@ -102,10 +102,7 @@ def cho_han(guess, bet):
 
 
 
-#Define Card Pick game -------------------------------------
-
-
-
+#Define Card Pick game function
 
 def card_pick(bet):
   global money
@@ -161,8 +158,12 @@ def card_pick(bet):
 
 
 
+#Define Roulette game function
 
 
+
+
+"""
 #Call your game of chance functions here
 print()
 
@@ -200,3 +201,4 @@ card_pick(1000)
 
 print("Testing Card Flip with a valid bet input")
 card_pick(20)
+"""
