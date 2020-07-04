@@ -49,7 +49,9 @@ def coin_flip(guess, bet):
     
     print("You have " + str(money) + " coins!")
     print()
-
+    if money < 0:
+      print("You're in debt!")
+      print()
 
 
 
@@ -98,7 +100,9 @@ def cho_han(guess, bet):
 
     print("You have " + str(money) + " coins!")
     print()
-
+    if money < 0:
+      print("You're in debt!")
+      print()
 
 
 
@@ -154,7 +158,9 @@ def card_pick(bet):
 
     print("You have " + str(money) + " coins!")
     print()
-
+    if money < 0:
+      print("You're in debt!")
+      print()
 
 
 
@@ -225,11 +231,14 @@ def roulette(guess, bet):
         money += bet * 36
 
       else:
-        print("Commiserations, you lose " + str(bet) + " coins.")
-        money += - bet
+        print("Commiserations, you lose " + str(bet * 36) + " coins.")
+        money += - bet * 36
 
     print("You have " + str(money) + " coins!")
     print()
+    if money < 0:
+      print("You're in debt!")
+      print()
 
 
 
@@ -288,10 +297,10 @@ print("Testing Roulette with valid parity guess input")
 roulette("Even", 25)
 
 print("Testing Roulette with valid number guess input")
-roulette(25, 5)
+roulette(25, 1)
 
 print("Testing Roulette with 00 number guess input")
-roulette(00, 2)
+roulette(00, 1)
 
 print("Testing Roulette with 0 number guess input")
-roulette(0, 1)
+roulette(0, 20)
