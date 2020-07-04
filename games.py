@@ -172,14 +172,15 @@ def roulette(guess, bet):
     print("You only have " + str(money) + " coins.")
     print()
 
-  elif (str(type(guess)) == "<class 'str'>" and guess != "Even" and guess != "Odd") or (str(type(guess)) == "<class 'int'>" and (guess < 1 or guess > 36)):
+  elif (str(type(guess)) == "<class 'str'>" and guess != "Even" and guess != "Odd") or (str(type(guess)) == "<class 'int'>" and guess != 00 and (guess < 1 or guess > 36)):
     print('Your guess can only be "Even", "Odd", or a number between 0 and 36 inclusive, or 00.')
     print()
 
   else:  #Game code goes here, incorrect inputs filtered above
-    number = random.randint(0, 37)
+    number = random.randint(0,37)
 
     if str(type(guess)) == "<class 'str'>":
+      print("You bet " + str(bet) + " coins on an " + guess + " number...")
       if number == 0:
         print("The ball landed on 0!")
         print("Commiserations, you lose " + str(bet) + " coins.")
@@ -189,15 +190,15 @@ def roulette(guess, bet):
         print("The ball landed on 00!")
         print("Commiserations, you lose " + str(bet) + " coins.")
         money += - bet
-        
-      elif number % 2 == 0:
+
+      print("The ball landed on " + str(number) + ".")
+      
+      if number % 2 == 0:
         parity = "Even"
         
       else:
         parity = "Odd"
 
-      print("You bet " + str(bet) + " coins on an " + guess + " number...")
-      print("The ball landed on " + str(number) + ".")
       print("It's " + parity + "!")
 
       if guess == parity:
@@ -210,26 +211,29 @@ def roulette(guess, bet):
 
     else: #Try to get it working with a guess of 00
       if number == 37:
-        result = 00
+        result = "00"
+        guess = "00"
       else:
-        print("You bet " + str(bet) + " coins on number " + str(guess) + "...")
-        print("The ball landed on " + str(number) + "!")
+        result = number
+      
+      print("You bet " + str(bet) + " coins on number " + str(guess) + "...")
+      print("The ball landed on " + str(result) + "!")
 
-        if guess == number:
-          print("Congratulations! You win " + str(bet * 35) + " coins!!!")
-          money += bet * 35
+      if guess == result:
+        print("Congratulations! You win " + str(bet * 36) + " coins!")
+        money += bet * 36
 
-        else:
-          print("Commiserations, you lose " + str(bet) + " coins.")
-          money += - bet
+      else:
+        print("Commiserations, you lose " + str(bet) + " coins.")
+        money += - bet
 
-  print("You have " + str(money) + " coins!")
-  print()
-
-
+    print("You have " + str(money) + " coins!")
+    print()
 
 
-"""
+
+
+
 
 #Call your game of chance functions here
 print()
@@ -269,8 +273,6 @@ card_pick(1000)
 print("Testing Card Flip with a valid bet input")
 card_pick(20)
 
-"""
-
 print("------ Testing Roulette ------")
 print()
 
@@ -290,5 +292,7 @@ print("Testing Roulette with valid number guess input")
 roulette(25, 5)
 
 print("Testing Roulette with 00 number guess input")
-roulette(00, 15)
+roulette(00, 2)
 
+print("Testing Roulette with 0 number guess input")
+roulette(0, 1)
