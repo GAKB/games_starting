@@ -158,6 +158,7 @@ def card_pick(bet):
 
 
 
+
 #Define Roulette game function
 def roulette(guess, bet):
   global money
@@ -171,23 +172,16 @@ def roulette(guess, bet):
     print("You only have " + str(money) + " coins.")
     print()
 
-  elif str(type(guess)) == "<class 'str'>":
-    if guess != "Even" and guess != "Odd":
-      print('Your guess can only be "Even", "Odd", or a number between 1 and 36 inclusive.')
-      print()
+  elif (str(type(guess)) == "<class 'str'>" and guess != "Even" and guess != "Odd") or (str(type(guess)) == "<class 'int'>" and (guess < 1 or guess > 36)):
+    print('Your guess can only be "Even", "Odd", or a number between 1 and 36 inclusive.')
+    print()
 
-    else:   #Code for Even or Odd guess goes here
-      print("You bet " + str(bet) + " coins on an " + guess + " number...")
-
-  elif str(type(guess)) == "<class 'int'>":
-    if guess < 1 or guess > 36:
-      print('Your guess can only be "Even", "Odd", or a number between 1 and 36 inclusive.')
-      print()
-
-    else:   #Code for Number guess goes here
-      print("You bet " + str(bet) + " coins on number " + str(guess) + "...")
+  else:  #Game code goes here, incorrect inputs filtered above
+    number = random.randint(0, 37)
     
 
+
+        
 
 
 """
