@@ -173,18 +173,64 @@ def roulette(guess, bet):
     print()
 
   elif (str(type(guess)) == "<class 'str'>" and guess != "Even" and guess != "Odd") or (str(type(guess)) == "<class 'int'>" and (guess < 1 or guess > 36)):
-    print('Your guess can only be "Even", "Odd", or a number between 1 and 36 inclusive.')
+    print('Your guess can only be "Even", "Odd", or a number between 0 and 36 inclusive, or 00.')
     print()
 
   else:  #Game code goes here, incorrect inputs filtered above
     number = random.randint(0, 37)
-    
 
+    if str(type(guess)) == "<class 'str'>":
+      if number == 0:
+        print("The ball landed on 0!")
+        print("Commiserations, you lose " + str(bet) + " coins.")
+        money += - bet
 
+      elif number == 37:
+        print("The ball landed on 00!")
+        print("Commiserations, you lose " + str(bet) + " coins.")
+        money += - bet
         
+      elif number % 2 == 0:
+        parity = "Even"
+        
+      else:
+        parity = "Odd"
+
+      print("You bet " + str(bet) + " coins on an " + guess + " number...")
+      print("The ball landed on " + str(number) + ".")
+      print("It's " + parity + "!")
+
+      if guess == parity:
+        print("Congratulations! You win " + str(bet) + " coins!")
+        money += bet
+
+      else:
+        print("Commiserations, you lose " + str(bet) + " coins.")
+        money += - bet
+
+    else: #Try to get it working with a guess of 00
+      if number == 37:
+        result = 00
+      else:
+        print("You bet " + str(bet) + " coins on number " + str(guess) + "...")
+        print("The ball landed on " + str(number) + "!")
+
+        if guess == number:
+          print("Congratulations! You win " + str(bet * 35) + " coins!!!")
+          money += bet * 35
+
+        else:
+          print("Commiserations, you lose " + str(bet) + " coins.")
+          money += - bet
+
+  print("You have " + str(money) + " coins!")
+  print()
+
+
 
 
 """
+
 #Call your game of chance functions here
 print()
 
@@ -242,3 +288,7 @@ roulette("Even", 25)
 
 print("Testing Roulette with valid number guess input")
 roulette(25, 5)
+
+print("Testing Roulette with 00 number guess input")
+roulette(00, 15)
+
