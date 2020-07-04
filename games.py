@@ -104,9 +104,25 @@ def cho_han(guess, bet):
 
 #Define Card Pick game -------------------------------------
 
+
+
+
 def card_pick(bet):
   global money
-  
+  #Assign a list for a complete deck of cards
+  suit_diamonds = ["Diamonds", "Diamonds", "Diamonds", "Diamonds", "Diamonds", "Diamonds", "Diamonds", "Diamonds", "Diamonds", "Diamonds", "Diamonds", "Diamonds", "Diamonds"]
+  suit_clubs = ["Clubs", "Clubs", "Clubs", "Clubs", "Clubs", "Clubs", "Clubs", "Clubs", "Clubs", "Clubs", "Clubs", "Clubs", "Clubs"]
+  suit_hearts = ["Hearts", "Hearts", "Hearts", "Hearts", "Hearts", "Hearts", "Hearts", "Hearts", "Hearts", "Hearts", "Hearts", "Hearts", "Hearts"]
+  suit_spades = ["Spades", "Spades", "Spades", "Spades", "Spades", "Spades", "Spades", "Spades", "Spades", "Spades", "Spades", "Spades", "Spades"]
+  card_names = ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"]
+  card_values = list(range(1, 14))
+  card_diamonds = list(zip(card_values, card_names, suit_diamonds))
+  card_clubs = list(zip(card_values, card_names, suit_clubs))
+  card_hearts = list(zip(card_values, card_names, suit_hearts))
+  card_spades = list(zip(card_values, card_names, suit_spades))
+  card_deck = card_diamonds + card_clubs + card_hearts + card_spades
+  card_deck.sort()
+
   if bet < 1:
     print("Bet must not be less than 1!")
     print()
@@ -121,33 +137,34 @@ def card_pick(bet):
     print("You are betting " + str(bet) + " coins that your card will be higher.")
     print("Aces are low, pick a card, any card...")
 
-    player1_card = random.randint(1, 13)
-    player2_card = random.randint(1, 13)
+    player_1_card = card_deck[random.randint(0,len(card_deck)-1)]
+    card_deck.remove(player_1_card)
+    player_2_card = card_deck[random.randint(0,len(card_deck)-1)]
 
-    if player1_card > player2_card:
-      print("Your card is higher!")
-      print("Congatulations! You win " + str(bet) + " coins!")
+    print("You picked the " + player_1_card[1] + " of " + player_1_card[2] + "...")
+    print("Player 2 picked the " + player_2_card[1] + " of " + player_2_card[2] + "...")
+
+    if player_1_card[0] > player_2_card[0]:
+      print("Your card is higher! You win " + str(bet) + " coins!")
       money += bet
 
-    elif player1_card == player2_card:
-      print("Your cards are equal!")
-      print("It's a tie! You do not win or lose any coins.")
+    elif player_1_card[0] < player_2_card[0]:
+      print("Your card is lower, you lose " + str(bet) + " coins.")
+      money += - bet
 
-    else:
-      print("Your card is lower!")
-      print("Commiserations, you lose " + str(bet) + " coins.")
-      money += -bet
+    elif player_1_card[0] == player_2_card[0]:
+      print("Your cards have equal value, it's a tie! No coins won or lost.")
 
     print("You have " + str(money) + " coins!")
     print()
 
-  
 
 
 
-print()
+
+
 #Call your game of chance functions here
-
+print()
 
 print("------ Testing Coin Flip ------")
 print()
