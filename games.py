@@ -2,6 +2,36 @@ import random
 
 money = 100
 
+#Define instruction list
+def instructions():
+  print()
+  print("------ G's Casino ------")
+  print()
+  print("You can play the following games using by typing the functions below:")
+  print()
+  print('''    To play Coin Flip:
+        type coin_flip("Heads" or "Tails", bet amount) and press Enter''')
+  print()
+  print('''    To play Cho-Han:
+        type cho_han("Even" or "Odd", bet amount) and press Enter''')
+  print()
+  print('''    To play Card Pick:
+        type card_pick(bet amount) and press Enter''')
+  print()
+  print('''    To play Roulette:
+        type roulette(guess, bet amount) and press Enter
+            Guesses can be "Even", "Odd", 00 or any number from 1 to 36 inclusive.''')
+  print()
+  print("Good luck!")
+  print()
+  print("You have " + str(money) + " coins, what would you like to play?")
+
+#Print instruction list in console for player to reference
+instructions()
+
+
+
+
 #Write your game of chance functions here
 
 
@@ -11,7 +41,7 @@ money = 100
 
 def coin_flip(guess, bet):
   global money
-  print("Coin Flip Game")
+  print("------ Coin Flip Game ------")
   
   if guess != "Heads" and guess != "Tails":
     print('Guess must be "Heads" or "Tails"!')
@@ -59,7 +89,7 @@ def coin_flip(guess, bet):
 
 def cho_han(guess, bet):
   global money
-  print("Cho-Han Game")
+  print("------ Cho-Han Game ------")
 
   if guess != "Even" and guess != "Odd":
     print('Guess must be "Even" or "Odd"!')
@@ -110,6 +140,7 @@ def cho_han(guess, bet):
 
 def card_pick(bet):
   global money
+  print("------ Card Pick Game ------")
   #Assign a list for a complete deck of cards
   suit_diamonds = ["Diamonds", "Diamonds", "Diamonds", "Diamonds", "Diamonds", "Diamonds", "Diamonds", "Diamonds", "Diamonds", "Diamonds", "Diamonds", "Diamonds", "Diamonds"]
   suit_clubs = ["Clubs", "Clubs", "Clubs", "Clubs", "Clubs", "Clubs", "Clubs", "Clubs", "Clubs", "Clubs", "Clubs", "Clubs", "Clubs"]
@@ -134,7 +165,6 @@ def card_pick(bet):
     print()
 
   else:
-    print("Two Player Card Pick Game")
     print("You are betting " + str(bet) + " coins that your card will be higher.")
     print("Aces are low, pick a card, any card...")
 
@@ -168,7 +198,7 @@ def card_pick(bet):
 #Define Roulette game function
 def roulette(guess, bet):
   global money
-  print("Roulette Game")
+  print("------ Roulette Game ------")
   
   if bet < 1:
     print("Bet must not be less than 1!")
@@ -241,7 +271,7 @@ def roulette(guess, bet):
       print()
 
 
-
+'''
 
 #Call your game of chance functions here
 print()
@@ -304,3 +334,5 @@ roulette(00, 1)
 
 print("Testing Roulette with 0 number guess input")
 roulette(0, 20)
+
+'''
