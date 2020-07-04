@@ -3,7 +3,7 @@ import random
 money = 100
 
 #Define instruction list
-def instructions():
+def help():
   print()
   print("------ G's Casino ------")
   print()
@@ -22,12 +22,14 @@ def instructions():
         type roulette(guess, bet amount) and press Enter
             Guesses can be "Even", "Odd", 00 or any number from 1 to 36 inclusive.''')
   print()
+  print("To see this list again, type help()")
+  print()
   print("Good luck!")
   print()
   print("You have " + str(money) + " coins, what would you like to play?")
 
 #Print instruction list in console for player to reference
-instructions()
+help()
 
 
 
