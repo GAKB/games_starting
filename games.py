@@ -20,7 +20,9 @@ def help():
   print()
   print('''    To play Roulette:
         type roulette(guess, bet amount) and press Enter
-            Guesses can be "Even", "Odd", any number from 0 to 36 inclusive, or to bet on 00 input 37.''')
+            Guesses can be "Even", "Odd", any number from 0 to 36 inclusive, or to bet on 00 input 37''')
+  print()
+  print("If you run out of coins, type refill() and press Enter")
   print()
   print("To see this list again, type help()")
   print()
@@ -31,6 +33,13 @@ def help():
 #Print instruction list in console for player to reference
 help()
 
+def refill():
+  global money
+  if money <= 0:
+    money = 100
+    print("You have another 100 coins!")
+  else:
+    print("You still have " + str(money) + " coins! Use these first.")
 
 
 
@@ -41,7 +50,7 @@ help()
 
 #Define Coin Flip game function
 
-def coin_flip(guess, bet):
+def coin_flip(guess = "guess", bet = 0):
   
   global money    #Allow update of global money variable to use as running total
   print("------ Coin Flip Game ------")
@@ -88,7 +97,7 @@ def coin_flip(guess, bet):
 
 #Define Cho-Han game function
 
-def cho_han(guess, bet):
+def cho_han(guess = "guess", bet = 0):
   
   global money
   print("------ Cho-Han Game ------")
@@ -139,23 +148,16 @@ def cho_han(guess, bet):
 
 #Define Card Pick game function
 
-def card_pick(bet):
+def card_pick(bet = 0):
   
   global money
   print("------ Card Pick Game ------")
+  
   #Assign a list for a complete deck of cards
-  suit_diamonds = ["Diamonds", "Diamonds", "Diamonds", "Diamonds", "Diamonds", "Diamonds", "Diamonds", "Diamonds", "Diamonds", "Diamonds", "Diamonds", "Diamonds", "Diamonds"]
-  suit_clubs = ["Clubs", "Clubs", "Clubs", "Clubs", "Clubs", "Clubs", "Clubs", "Clubs", "Clubs", "Clubs", "Clubs", "Clubs", "Clubs"]
-  suit_hearts = ["Hearts", "Hearts", "Hearts", "Hearts", "Hearts", "Hearts", "Hearts", "Hearts", "Hearts", "Hearts", "Hearts", "Hearts", "Hearts"]
-  suit_spades = ["Spades", "Spades", "Spades", "Spades", "Spades", "Spades", "Spades", "Spades", "Spades", "Spades", "Spades", "Spades", "Spades"]
   card_names = ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"]
+  card_suits = ["Hearts", "Spades", "Diamonds", "Clubs"]
   card_values = list(range(1, 14))
-  card_diamonds = list(zip(card_values, card_names, suit_diamonds))
-  card_clubs = list(zip(card_values, card_names, suit_clubs))
-  card_hearts = list(zip(card_values, card_names, suit_hearts))
-  card_spades = list(zip(card_values, card_names, suit_spades))
-  card_deck = card_diamonds + card_clubs + card_hearts + card_spades
-  card_deck.sort()
+  card_deck = [(card_values[i], card_names[i], suit) for i in range(0, len(card_names)) for suit in card_suits]
 
   if bet < 1:    #Catch incorrect bet input
     print("Bet must not be less than 1!")
@@ -170,8 +172,7 @@ def card_pick(bet):
     print("You are betting " + str(bet) + " coins that your card will be higher.")
     print("Aces are low, pick a card, any card...")
 
-    player_1_card = card_deck[random.randint(0,len(card_deck)-1)]    #User card picked from deck of 52 cards
-    card_deck.remove(player_1_card)    #Remove picked card from deck
+    player_1_card = card_deck.pop(random.randint(0,len(card_deck)-1))    #User card picked from deck of 52 cards
     player_2_card = card_deck[random.randint(0,len(card_deck)-1)]    #Player 2 card picked from deck of 51 cards
 
     print("You picked the " + player_1_card[1] + " of " + player_1_card[2] + "...")
@@ -197,7 +198,7 @@ def card_pick(bet):
 
 
 #Define Roulette game function
-def roulette(guess, bet):
+def roulette(guess = "guess", bet = 0):
   
   global money
   print("------ Roulette Game ------")
@@ -267,8 +268,8 @@ def roulette(guess, bet):
         money += bet * 36
 
       else:
-        print("Commiserations, you lose " + str(bet * 36) + " coins.")
-        money += - bet * 36
+        print("Commiserations, you lose " + str(bet) + " coins.")
+        money += - bet
 
     print("You have " + str(money) + " coins!")    #Print remaining funds for next game
     if money < 0:
